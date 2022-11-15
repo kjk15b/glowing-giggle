@@ -40,8 +40,8 @@ def get_mock_data():
 
 def post(es : Elasticsearch, display : adafruit_ssd1306.SSD1306_I2C, index='barbecue-smoker'):
     print("Starting post")
-    display.fill(0)
-    display.show()
+    #display.fill(0)
+    #display.show()
     data = get_mock_data()
     c = None
     # yyyy-MM-dd'T'HH:mm:ss
@@ -51,14 +51,15 @@ def post(es : Elasticsearch, display : adafruit_ssd1306.SSD1306_I2C, index='barb
     print(data)
     print(es.ping())
     if es.ping():
-        display.text("Ingesting at: ", 0, 0, 1)
-        display.text(''.format(es.__str__()), display.width-85, display.height-7, 1)
-        display.show()
+        #display.text("Ingesting at: ", 0, 0, 1)
+        #display.text(''.format(es.__str__()), display.width-85, display.height-7, 1)
+        #display.show()
         c = es.index(index=index, body=data)
     else:
-        display.text("Failure to connect: ", 0, 0, 1)
-        display.text(''.format(es.__str__()), display.width-85, display.height-7, 1)
-        display.show()
+        #display.text("Failure to connect: ", 0, 0, 1)
+        #display.text(''.format(es.__str__()), display.width-85, display.height-7, 1)
+        #display.show()
+        c = None
     return c
 
 
@@ -112,10 +113,10 @@ def setup_elastic(index='barbecue-smoker', host='http://elasticsearch.attlocal.n
 
 if __name__ == '__main__':
     print("Starting Service!")
-    rfm69, display = setup_board()
+    #rfm69, display = setup_board()
     es = setup_elastic()
     print("Setup Complete!")
     while True:
-        post(es, display)
+        post(es, display=None)
         time.sleep(3)
     
