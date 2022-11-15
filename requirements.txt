@@ -1,0 +1,7 @@
+Elasticsearch==7.11.0
+adafruit-circuitpython-ssd1306
+adafruit-circuitpython-framebuf
+adafruit-circuitpython-rfm69
+adafruit-blinka
+RPI.GPIO
+adafruit-io
