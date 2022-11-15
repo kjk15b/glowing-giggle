@@ -84,12 +84,12 @@ def setup_board():
     # RFM69 Configuration
     CS = DigitalInOut(board.CE1)
     RESET = DigitalInOut(board.D25)
-    spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
+    #spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
     try:
-        rfm69 = adafruit_rfm69.RFM69(spi, CS, RESET, 915.0)
+        #rfm69 = adafruit_rfm69.RFM69(spi, CS, RESET, 915.0)
         display.text('RFM69: Detected', 0, 0, 1)
         time.sleep(3)
-        return rfm69, display
+        return None, display
     except RuntimeError as error:
         # Thrown on version mismatch
         display.text('RFM69: ERROR', 0, 0, 1)
