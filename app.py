@@ -100,7 +100,8 @@ def setup_elastic(index='barbecue-smoker', host='http://elasticsearch.attlocal.n
     es = Elasticsearch(hosts=host, http_auth=auth)
     print(es.__str__())
     if es.ping():
-        es.create(index=index, ignore=400)
+        #es.create(index=index, ignore=400)
+        print("Success!")
     return es
 
 
