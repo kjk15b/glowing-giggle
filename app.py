@@ -111,8 +111,10 @@ def setup_elastic(index='barbecue-smoker', host='http://elasticsearch.attlocal.n
 
 
 if __name__ == '__main__':
+    print("Starting Service!")
     rfm69, display = setup_board()
     es = setup_elastic()
+    print("Setup Complete!")
     while True:
         post(es, display)
         time.sleep(3)
