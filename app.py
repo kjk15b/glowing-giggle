@@ -44,7 +44,10 @@ def post(es : Elasticsearch, display : adafruit_ssd1306.SSD1306_I2C, index='barb
     display.show()
     data = get_mock_data()
     c = None
-    data['@timestamp'] = str(datetime.datetime.now())
+    # yyyy-MM-dd'T'HH:mm:ss
+    now = datetime.datetime.now()
+    date_time = now.strftime("%Y-%m-%dT%H:%M:%S")
+    data['@timestamp'] = date_time
     print(data)
     print(es.ping())
     if es.ping():
