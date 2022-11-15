@@ -44,7 +44,7 @@ def post(es : Elasticsearch, display : adafruit_ssd1306.SSD1306_I2C, index='barb
     display.show()
     data = get_mock_data()
     c = None
-    data['@timestamp'] = datetime.datetime.now()
+    data['@timestamp'] = str(datetime.datetime.now())
     print(data)
     if es.ping():
         display.text("Ingesting at: ", 0, 0, 1)
