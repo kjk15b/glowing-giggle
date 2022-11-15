@@ -39,7 +39,7 @@ def get_mock_data():
     return data
 
 def post(es : Elasticsearch, display : adafruit_ssd1306.SSD1306_I2C, index='barbecue-smoker'):
-    print("Starrting post")
+    print("Starting post")
     display.fill(0)
     display.show()
     data = get_mock_data()
@@ -97,7 +97,7 @@ def setup_board():
 
 
 def setup_elastic(index='barbecue-smoker', host='http://elasticsearch.attlocal.net:9200', auth=('elastic', 'kiesling')):
-    es = Elasticsearch(hosts=host, auth=auth)
+    es = Elasticsearch(hosts=host, http_auth=auth)
     print(es.__str__())
     if es.ping():
         es.create(index=index, ignore=400)
