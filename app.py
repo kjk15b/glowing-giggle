@@ -53,10 +53,12 @@ def post(es : Elasticsearch, display : adafruit_ssd1306.SSD1306_I2C, index='barb
     if es.ping():
         display.text("Ingesting at: ", 0, 0, 1)
         display.text(''.format(es.__str__()), display.width-85, display.height-7, 1)
+        display.show()
         c = es.index(index=index, body=data)
     else:
         display.text("Failure to connect: ", 0, 0, 1)
         display.text(''.format(es.__str__()), display.width-85, display.height-7, 1)
+        display.show()
     return c
 
 
