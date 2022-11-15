@@ -46,17 +46,14 @@ def post(es : Elasticsearch, display : adafruit_ssd1306.SSD1306_I2C, index='barb
     c = None
     data['@timestamp'] = str(datetime.datetime.now())
     print(data)
+    print(es.ping())
     if es.ping():
         display.text("Ingesting at: ", 0, 0, 1)
-        display.text(''.format(es.__str__), display.width-85, display.height-7, 1)
-        c = es.create(
-            index=index,
-            body=data,
-            refresh=True
-        )
+        display.text(''.format(es.__str__()), display.width-85, display.height-7, 1)
+        c = es.index(index=index, body=data)
     else:
         display.text("Failure to connect: ", 0, 0, 1)
-        display.text(''.format(es.__str__), display.width-85, display.height-7, 1)
+        display.text(''.format(es.__str__()), display.width-85, display.height-7, 1)
     return c
 
 
@@ -101,7 +98,7 @@ def setup_board():
 
 def setup_elastic(index='barbecue-smoker', host='http://elasticsearch.attlocal.net:9200', auth=('elastic', 'kiesling')):
     es = Elasticsearch(hosts=host, auth=auth)
-    print(es.__str__)
+    print(es.__str__())
     if es.ping():
         es.create(index=index, ignore=400)
     return es
